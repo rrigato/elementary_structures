@@ -42,7 +42,7 @@ public:
 	MyArray & operator -- (int)
 	{
 		MyArray temp(size);
-		for (int i = 0; i < size i++;)
+		for (int i = 0; i < size; i++)
 			temp[i] = arr[i];
 		for (int i = 0; i < size; i++)
 			arr[i]--;
@@ -58,7 +58,38 @@ public:
 		{
 			return false;
 		}
-		for (int i = 0; i < )
+		for (int i = 0; i < size; i++)
+		{
+			if (arr[i] != m.arr[i])
+				return false;
+		}
+		return true;
+	}
+	MyArray & operator = (const MyArray & m)
+	{
+		if (this == &m)
+			return *this;
+
+		int * newarr = 0;
+		if (arr == NULL)
+		{
+			newarr = new int[m.size];
+		}
+		if (size == m.size)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				arr[i] = m.arr[i];
+			}
+		}
+
+		newarr = new int[m.size];
+		size = m.size;
+		for (int i = 0; i < m.size; i++)
+			newarr[i] = m.arr[i];
+		delete[] arr;
+		arr = newarr;
+		return *this;
 	}
 
 };
@@ -135,6 +166,7 @@ int main()
 	}
 
 	else
+		cout << "They are not the same" << endl;
 
 
 	return 0;
