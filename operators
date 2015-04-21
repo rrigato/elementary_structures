@@ -83,11 +83,16 @@ MyArray::MyArray(int s, int t)
 	}
 }
 
-istream & operator >> (istream&, MyArray &)
+istream & operator >> (istream& is, MyArray &m)
 {
 	int * newarray = new int[m.size + 1];
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < m.length(); i++)
 		newarray[i] = m.arr[i];
+	is >> newarray[m.size];
+	m.size++;
+	delete[] m.arr;
+	m.arr = newarray;
+	return is;
 
 }
 
@@ -109,5 +114,16 @@ int main()
 	//x[100] = 99;
 	//cout << x[0] << endl;
 	cin.get();
+	
+	MyArray n;
+	if (m == n)
+	{
+
+		cout << "They are the same";
+	}
+
+	else
+
+
 	return 0;
 }
