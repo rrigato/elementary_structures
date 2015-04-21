@@ -49,6 +49,18 @@ public:
 		return temp;
 	}
 	friend istream & operator >> (istream&, MyArray &);
+
+	bool operator == (const MyArray & m)
+	{
+		if (this == &m)
+			return true;
+		if (size != m.size)
+		{
+			return false;
+		}
+		for (int i = 0; i < )
+	}
+
 };
 
 ostream& operator << (ostream & o, const MyArray& m)
