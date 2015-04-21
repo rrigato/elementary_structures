@@ -1,0 +1,113 @@
+#include <iostream>
+using namespace std;
+
+class MyArray
+{
+	int * arr;
+	int size;
+
+public:
+	MyArray()
+	{
+		size = 5;
+		arr = new int[];
+	}
+	MyArray(int);
+	~MyArray();
+	MyArray(int , int );
+	int & operator[](int index) //return type is the type of object you want to return
+	{
+		if (index <0 || index > size - 1)  //gives the object bounds checking
+		{
+			arr[0] = -1;
+		}
+		return arr[index];
+	}
+	friend ostream & operator << (ostream &, const MyArray &);
+	int length() const
+	{
+		return size;
+	}
+
+	MyArray operator ++()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			arr[i] ++;
+			return *this;
+		}
+	}
+
+	// postfix operator
+	MyArray & operator -- (int)
+	{
+		MyArray temp(size);
+		for (int i = 0; i < size i++;)
+			temp[i] = arr[i];
+		for (int i = 0; i < size; i++)
+			arr[i]--;
+		return temp;
+	}
+	friend istream & operator >> (istream&, MyArray &);
+};
+
+ostream& operator << (ostream & o, const MyArray& m)
+{
+	for (int i = 0; i < m.size; i++)
+	{
+		o << m.arr[i] << ",";
+	}
+	return o;
+}
+
+
+
+MyArray::~MyArray()
+{
+	delete [] arr;
+}
+
+MyArray::MyArray(int s)
+{
+	size = s;
+	arr = new int[size];
+}
+MyArray::MyArray(int s, int t)
+{
+	size = s;
+	arr = new int[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = t;
+	}
+}
+
+istream & operator >> (istream&, MyArray &)
+{
+	int * newarray = new int[m.size + 1];
+	for (int i = 0; i < size; i++)
+		newarray[i] = m.arr[i];
+
+}
+
+
+int main()
+{
+	MyArray x;
+	MyArray m;
+	x[0] = 22;
+	cout << m.length() << endl;
+	for (int i = 0; i < m.length(); i++)
+	{
+		m[i] = i * 10;
+	}
+	cout << m << endl;
+	m++;
+	cout << m << endl;
+	//cout << x[0] << endl;
+	//x[100] = 99;
+	//cout << x[0] << endl;
+	cin.get();
+	return 0;
+}
