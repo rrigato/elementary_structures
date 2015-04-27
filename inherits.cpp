@@ -91,6 +91,20 @@ public:
     {
         max_cargo = cargo;
     }
+    void set_cargo(int cargo)
+    {
+        max_cargo = cargo;
+
+    }
+    int get_cargo() const
+    {
+        return max_cargo;
+    }
+    void print()
+    {
+        cout << "The ships name is: " << get_name() <<endl;
+        cout << "The ships max cargo is: " << get_cargo() <<endl;
+    }
 };
 
 int main ()
