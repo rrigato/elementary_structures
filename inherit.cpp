@@ -53,11 +53,11 @@ class CruiseShip: public Ship
 private:
     int max_passengers;
 public:
-    CruiseShip()
+    CruiseShip() : Ship("CruiseShip", "0")
     {
         max_passengers = 0;
     }
-    CruiseShip(int passengers)
+    CruiseShip(int passengers, string Shipname, string year) : Ship(Shipname, year)
     {
 
         max_passengers = passengers;
@@ -73,21 +73,24 @@ public:
     }
     void print() const
     {
-        cout << "The ships name is: " << get_name() <<endl;
-        cout << "The ships max number of passengers is: " << get_passengers() << endl;
+        cout << "The Cruiseships name is: " << Ship::get_name() <<endl;
+        cout << "The Cruiseships max number of passengers is: " << get_passengers() << endl;
     }
 
+
 };
+
+
 class CargoShip: public Ship
 {
 private:
     int max_cargo;
 public:
-    CargoShip()
+    CargoShip() : Ship("CargoShip","0")
     {
         max_cargo = 0;
     }
-    CargoShip(int cargo)
+    CargoShip(int cargo, string ShipName, string year): Ship(ShipName, year)
     {
         max_cargo = cargo;
     }
@@ -102,12 +105,30 @@ public:
     }
     void print()
     {
-        cout << "The ships name is: " << get_name() <<endl;
-        cout << "The ships max cargo is: " << get_cargo() <<endl;
+
+        cout << "The Cargoships name is: " << Ship::get_name() <<endl;
+        cout << "The Cargoships max cargo is: " << get_cargo() <<endl;
     }
 };
 
 int main ()
 {
+	const int num_ships = 3;
+	//This is polymorphism, A ship pointer is refering to CruiseShip and CargoShip objects
+	Ship * ships[num_ships] =
+	{ new Ship("Mariot", "1925"),
+	  new CruiseShip(1000, "Exposition", "1985"),
+	 new CargoShip(125000, "Buletin", "1975")
+	};
+
+	for (int i=0; i< num_ships; i++)
+	{
+        //This is an example of dynamic binding. The virtual print function is overriden
+        //in each iteration of a loop.
+           ships[i]->print() ;
+
+	}
+	cin.get();
 	return 0;
 }
+
