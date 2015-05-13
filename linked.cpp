@@ -1,134 +1,119 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
-void menu (char);
-void print_menu ();
-void small_menu();
 class LinkedList
 {
 private:
-	struct Node
-	{
-		char value;
-		Node * Next;
-	};
-	Node * head;
+    struct Node
+    {
+        char value;
+        Node * Next;
+    };
+    Node * head;
 public:
-	LinkedList()
-		{ head =NULL;}
-	/*~LinkedList()
-		{
-			while (head)
-			{
-				head->
-			}
+    LinkedList()
+        { 
+			head =NULL;
+			small_menu();
 		}
-	*/
-	void Insert (char);
+    ~LinkedList()
+        {
+			destroy();
+        }
+    
+    void print() const; //works
+    void Insert (); 
+    void Remove( char); 
+    bool Write() const; //works
+    bool Read () const; //works
+	void destroy();
+	bool search(char);//works
+	void small_menu();
+	void menu (char);
+	void print_menu ();
 };
 int main()
 {
-	LinkedList start;
-	start.Insert('C');
-	start.Insert('B');
-	return 0;
+    LinkedList start;
+	char letter = 'A';
+	start.Insert();
+	start.Insert();
+
+	bool test =start.search(letter);
+	if (test)
+		cout << "It worked" <<endl;
+	cin.get();
+	cin.get();
+    return 0;
 }
-void LinkedList::Insert(char letter)
+bool LinkedList::search(char letter)
 {
-	if (head == NULL)
-	{ 
-		Node * headnode = new Node;
-		head = headnode;
-		head->value = letter;
-		head->Next =NULL;
-	}
-	if (head->Next ==NULL)
+	if (!head)
+	{return false;}
+	
+	if(head->value == NULL)
 	{
-		if(head->value > letter)
+		if(head->value == letter)
 		{
-			Node * newNode;
-			newNode = new Node;
-			newNode->value = letter;
-			newNode->Next = head;
-			head= newNode;
+			return true;
 		}
+		else { return false;}
 	}
-	cout << head->value <<endl;
-	//cout << newNode->value <<endl;
-	/*
-	Node * NodePtr = head->Next;
-	while(*/
+	Node *one = head;
+	Node *two = head->Next;
+	for (; one->value != letter &&two!= NULL; one = two, two = two->Next);
+	if (one->value==letter)
+	{return true;}
+	return false;
 }
-
-void menu (char letter)
+void LinkedList::destroy()
 {
-	switch(letter)
+	
+	Node *p = NULL;
+	while (head)
 	{
-	case 'C': cout << "calling the clear function" <<endl;
-			break;
-	case 'D': cout << "Delete a character for the linked list" <<endl;
-			break;
-	case 'G': cout << "Load the linked list." <<endl;
-			break;
-	case 'I': cout << "Insert into the linked list" <<endl;
-			break;
-	case 'L': cout << "Returns the length of the linked list" <<endl;
-			break;
-	case 'M': print_menu();
-			break;
-	case 'P': cout << "Display the contents of the linked list " <<endl;
-			break;
-	case 'Q': cout << "Terminates the program." <<endl;
-			break;
-	case 'R': cout << "Extra credit display linked list in reverse." <<endl;
-			break;
-	case 'S': cout << "Search for a value in the linked list " << endl;
-			break;
-	case 'W': cout << "Writes the linked list to the disk." <<endl;
-			break;
-	default : cout << "Bad user, please enter a proper menu choice" <<endl; 
-			small_menu();
-			
+		p = head;
+		head = head->Next;
+		delete p;
 
 	}
 }
-
-void print_menu ()
+bool LinkedList::Read() const
 {
-	char choice;
-	cout << "Please chose an option from the menu..." <<endl;
-	cout << "'C' Clears the linked list." <<endl;
-	cout << "'D' Deletes a character for the linked list." <<endl;
-	cout << "'G' Loads the linked list from disk." <<endl;
-	cout << "'I' Insert into the linked list" <<endl;
-	cout << "'L' Returns the length of the linked list" <<endl;
-	cout << "'M' Displays the menu" <<endl;
-    cout << "'P' Display the contents of the linked list " <<endl;
-	cout << "'Q' Terminates the program." <<endl;
-    cout << "'R' Extra credit display linked list in reverse." <<endl;
-    cout << "'S' Search for a value in the linked list " << endl;
-    cout << "'W' Writes the linked list to the disk." <<endl;
-
-	cout << "Enter your choice" <<endl;
-	cin >> choice;
-	menu(choice);
-
+    char input;
+    fstream f;
+    f.open("list.dat", ios::in);
+    if (f)
+    {
+        while(f >>input)
+        {
+            cout <<input;
+        }
+        f.close();
+        return true;
+         
+    }
+    f.close();
+    return false;
+     
 }
-
-void small_menu ()
+bool LinkedList::Write() const
 {
-	cout << "(C)lear" <<endl;
-	cout <<"(D)elete" <<endl;
-	cout <<"(G)et" <<endl;
-	cout <<"(I)nsert" <<endl;
-	cout <<"(L)ength" <<endl;
-	cout <<"(M)enu" <<endl;
-	cout <<"(P)rint" <<endl;
-	cout <<"(Q)uit" <<endl;
-	cout <<"(R)everse"<<endl;
-	cout <<"(S)earch" <<endl;
-	cout <<"(W)rite" <<endl;
-	char choice;
-	cin >> choice;
-	menu(choice);
+    Node * q;
+    q = head;
+    fstream f;
+    f.open("list.dat", ios::out);
 
+    if (f)
+    {
+        while (q)
+        {
+            f << q->value;
+            q = q->Next;
+        }
+		f.close();
+        return true;
+    }
+    f.close();
+    return false;
 }
