@@ -38,7 +38,7 @@ public:
 int main()
 {
     LinkedList start;
-    cin.get();
+    //cin.get();
     return 0;
 }
   
@@ -172,16 +172,20 @@ void LinkedList::Remove(char letter)
     if (head->Next ==NULL)
     {
         if (head->value == letter)
-        {delete head;}
-        else
-            {return;}
+        {
+			delete head;
+			head= NULL;
+          
+		}
+		  return;
     }
     Node * one = head;
     Node * two = one->Next;
 
-        for (one = head, two = head->Next; two != NULL && two->value != letter; one = two, two = two->Next);
+        
         if (two!=NULL)
         {
+			for (one = head, two = head->Next; two != NULL && two->value != letter; one = two, two = two->Next);
              one->Next = two->Next;
              delete two;
         }
