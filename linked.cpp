@@ -46,8 +46,19 @@ int main()
  {
       Node * one, *two;
       one = head; two = head->Next;
-      for(; two->Next != NULL; one = two, two = two->Next); 
-      Reverse(two);
+	  if (!one)
+	  {
+		  cout << "There are no values in the list to reverse" <<endl;
+	  }
+	  else if (two)
+	  {
+		 for(; two->Next != NULL; one = two, two = two->Next); 
+		 Reverse(two);
+	  }
+	  else
+	  {
+		  cout << "There is only one value in the list to reverse " <<endl;
+	  }
  }
  void LinkedList::Reverse(Node * two) const
  {
@@ -246,55 +257,65 @@ void LinkedList::menu (char letter)
 {
     switch(letter)
     {
+	case 'c':
     case 'C': {
 				destroy();//cout << "calling the clear function" <<endl;
                 break;
               }
 
+	case 'd':
     case 'D': {
 			   char Delete; cout << "Enter the value to delete" <<endl;
                cin>>Delete; Remove(Delete);//cout << "Delete a character for the linked list" <<endl;
                break;
               }
 
+	case 'g':
     case 'G': { 
 				Read();
                 cout <<endl;//cout << "Load the linked list." <<endl;
                 break;
               }
 
+	case 'i':
     case 'I': {
 				Insert(); //cout << "Insert into the linked list" <<endl;
                 break;
               }
 
+	case 'l':
     case 'L': {  
 				 int returned; returned = length(); 
                  cout <<"The linked list has " <<returned << " nodes" <<endl; // cout << "Returns the length of the linked list" <<endl;
                  break;
               }
 
+	case 'm':
     case 'M': 
 			  {
 				print_menu();
                 break;
               }
 
+	case 'p':
     case 'P': { 
 				print(); //cout << "Display the contents of the linked list " <<endl;
                 break;
               }
 
+	case 'q':
     case 'Q': {
 				cout <<"Bye Bye" <<endl;//cout << "Terminates the program." <<endl;
                 return;
                 break;
               }
 
+	case 'r':
     case 'R': { Reverse(); //cout << "Extra credit display linked list in reverse." <<endl;
 				break;
 			  }
     
+	case 's':
 	case 'S': {
 				char searching; cout << "Enter a value to search for" <<endl;
                 cin >>searching; 
@@ -307,6 +328,7 @@ void LinkedList::menu (char letter)
                 break;
               }
     
+	case 'w':
 	case 'W': {Write(); //cout << "Writes the linked list to the disk." <<endl;
                 break;
               }
@@ -321,7 +343,7 @@ void LinkedList::menu (char letter)
     
 void LinkedList::print_menu ()
 {
-    char choice;
+    //char choice;
     cout << "Please chose an option from the menu..." <<endl;
     cout << "'C' Clears the linked list." <<endl;
     cout << "'D' Deletes a character for the linked list." <<endl;
