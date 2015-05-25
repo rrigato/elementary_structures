@@ -1,3 +1,4 @@
+
 #ifndef MYQUEUE_H
 #define MYQUEUE_H
 
@@ -21,6 +22,8 @@ public:
        Queue()
        {
               Front = NULL;
+              Rear = NULL;
+//              small_menu();
        }
        void operator= (const Queue &obj)
        {
@@ -33,10 +36,14 @@ public:
             {
                 return ;
             }
+            while(Front)
+            {
+                Deque();
+            }
             Node * helper = obj.Front;
             while (helper)
             {
-                enque(helper->data);
+                Enque(helper->data);
                 helper = helper->next;
             }
 
@@ -45,64 +52,82 @@ public:
         Queue( const Queue &obj)
         {
             *this = obj;
+//            small_menu();
 
         }
 
-       void enque (P );
-       P deque ();
+       void Enque (P );
+       P Deque ();
        void menu( char) const;
        void small_menu() const;
+       bool isFull() const
+       {
+           return false;
+       }
 
+        bool isEmpty() const
+        {
+            if (!Front)
+            {
+                return true;
+            }
+            return false;
+        }
 
 };
 
-    template <class P>
-    void Queue<P>::small_menu() const
-    {
-        char choice;
-        cout << "(E)nque" <<endl;
-        cout << "(D)eque" <<endl;
-        cout << "(Q)uit" <<endl;
-        menu (choice);
-    }
-
-    template <class P>
-    void Queue<P>::menu(char letter) const
-    {
-        switch (letter)
-            {
-                case 'e':
-                    case 'E':  {
-                                    cout << "Enque the function " <<endl;
-                                    break;
-                               }
-                    case 'd':
-                    case 'D':
-                            {
-                                cout << "deque the function" <<endl;
-                                break;
-                            }
-                    case 'q':
-                    case 'Q':
-                            {
-                                cout << "bye bye " <<endl;
-                                return;
-                            }
-                    default:
-                            {
-                                cout << " Bad user hit a proper value "<<endl;
-                            }
-            }
-                small_menu();
-    }
+//    template <class P>
+//    void Queue<P>::small_menu() const
+//    {
+//        char choice;
+//        cout << "(E)nque" <<endl;
+//        cout << "(D)eque" <<endl;
+//        cout << "(Q)uit" <<endl;
+//        cin >> choice;
+//        menu (choice);
+//    }
+//
+//    template <class P>
+//    void Queue<P>::menu(char letter) const
+//    {
+//        switch (letter)
+//            {
+//                case 'e':
+//                    case 'E':  {
+//                                    int value = num_nodes +1;
+//                                    Enque (value);
+//                                    cout << "Customer number " << value << " now in line!" <<endl;
+//                                    cout << "There are now " << num_nodes << " customers in line!" <<endl;
+//                                    break;
+//                               }
+//                    case 'd':
+//                    case 'D':
+//                            {
+//                                cout << "Deque the function" <<endl;
+//                                break;
+//                            }
+//                    case 'q':
+//                    case 'Q':
+//                            {
+//                                cout << "bye bye " <<endl;
+//                                return;
+//                            }
+//                    default:
+//                            {
+//                                cout << " Bad user hit a proper value "<<endl;
+//                                small_menu();
+//                            }
+//            }
+//                small_menu();
+//    }
 
 
 template <class P>
-P Queue<P>::deque()
+P Queue<P>::Deque()
 {
     if (!Front)
     {
-        //throw "The queue is empty";
+        throw "The queue is empty";
         return -1;
     }
     else
@@ -116,7 +141,7 @@ P Queue<P>::deque()
     }
 }
  template <class P>
- void Queue<P>::enque(P value)
+ void Queue<P>::Enque(P value)
 {
       Node * NewNode;
       NewNode = new Node;
