@@ -22,23 +22,29 @@ public:
        {
               Front = NULL;
        }
-       Queue & operator= (const &obj)
+       void operator= (const Queue &obj)
        {
             if (&obj == this)
             {
 
-                return this*;
+                return ;
             }
-            if (obj->Front ==NULL)
+            if (obj.Front ==NULL)
             {
-                return this*;
+                return ;
             }
-            Node * helper = obj->Front;
+            Node * helper = obj.Front;
             while (helper)
             {
                 enque(helper->data);
                 helper = helper->next;
             }
+
+        }
+
+        Queue( const Queue &obj)
+        {
+            *this = obj;
 
         }
 
@@ -96,7 +102,8 @@ P Queue<P>::deque()
 {
     if (!Front)
     {
-        throw "The queue is empty";
+        //throw "The queue is empty";
+        return -1;
     }
     else
     {
@@ -114,7 +121,6 @@ P Queue<P>::deque()
       Node * NewNode;
       NewNode = new Node;
       NewNode->data = value;
-      Node * helper1 = Front;
       if (!Front)
       {
                 Front = NewNode;
