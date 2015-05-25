@@ -1,7 +1,5 @@
-
 #ifndef MYQUEUE_H
 #define MYQUEUE_H
-
 #include <string>
 #include <iostream>
 using namespace std;
@@ -23,6 +21,7 @@ public:
        {
               Front = NULL;
               Rear = NULL;
+              num_nodes = 0;
 //              small_menu();
        }
        void operator= (const Queue &obj)
@@ -46,7 +45,7 @@ public:
                 Enque(helper->data);
                 helper = helper->next;
             }
-
+            num_nodes = obj.num_nodes;
         }
 
         Queue( const Queue &obj)
@@ -73,54 +72,11 @@ public:
             }
             return false;
         }
-
+        int get_num() const
+        {
+            return num_nodes;
+        }
 };
-
-//    template <class P>
-//    void Queue<P>::small_menu() const
-//    {
-//        char choice;
-//        cout << "(E)nque" <<endl;
-//        cout << "(D)eque" <<endl;
-//        cout << "(Q)uit" <<endl;
-//        cin >> choice;
-//        menu (choice);
-//    }
-//
-//    template <class P>
-//    void Queue<P>::menu(char letter) const
-//    {
-//        switch (letter)
-//            {
-//                case 'e':
-//                    case 'E':  {
-//                                    int value = num_nodes +1;
-//                                    Enque (value);
-//                                    cout << "Customer number " << value << " now in line!" <<endl;
-//                                    cout << "There are now " << num_nodes << " customers in line!" <<endl;
-//                                    break;
-//                               }
-//                    case 'd':
-//                    case 'D':
-//                            {
-//                                cout << "Deque the function" <<endl;
-//                                break;
-//                            }
-//                    case 'q':
-//                    case 'Q':
-//                            {
-//                                cout << "bye bye " <<endl;
-//                                return;
-//                            }
-//                    default:
-//                            {
-//                                cout << " Bad user hit a proper value "<<endl;
-//                                small_menu();
-//                            }
-//            }
-//                small_menu();
-//    }
-
 
 template <class P>
 P Queue<P>::Deque()
@@ -137,6 +93,11 @@ P Queue<P>::Deque()
         Front = Front->next;
         value = helper1->data;
         delete helper1;
+        num_nodes--;
+        if(num_nodes == 0)
+        {
+            Rear = NULL;
+        }
         return value;
     }
 }
