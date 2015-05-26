@@ -50,51 +50,23 @@ public:
 			Node * helper1;
 	//		Node * helper2;
 			helper1 = obj.Top;
-			while (helper1)
-			{
-				push(helper1->data);
-				helper1 = helper1->next;
-			}
+			copy_help(helper1);
 
 		}
 
 	}
-
-	//    Stack <Z> & operator=(Stack<Z> &obj)
-	//    {
-	//
-	//        if (&obj == this)
-	//        {
-	//            return *this;
-	//        }
-	//        Z value;
-	//        //Node * helper1 = Top;
-	//        if (!obj.Top)
-	//        {
-	//            return *this;
-	//
-	//        }
-	//        else
-	//        {
-	//
-	//                Node * helper2 = obj.Top;
-	//        //helper2 = obj.Top;
-	//                Z temp;
-	//                while (helper2)
-	//                    {
-	//                    // value = helper2->data;
-	//                    temp = helper2->data;
-	//                    push(temp);
-	//                    //helper1->data = push(value);
-	//
-	//                    helper2 = helper2->next;
-	//                    // helper2 = helper2->next;
-	//
-	//                    }
-	//        }
-	//        return *this;
-	//    }
-
+	void copy_help(Node * helper1)
+	{
+		if (helper1 == NULL)
+		{
+			return;
+		}
+		else
+		{
+			copy_help(helper1->next);
+			push(helper1->data);
+		}
+	}
 };
 
 
@@ -153,8 +125,4 @@ Z Stack<Z>::pop()
 		return value;
 	}
 }
-
-
-
-
 #endif
