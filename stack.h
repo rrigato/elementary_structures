@@ -32,6 +32,11 @@ public:
 		{
 			return;
 		}
+
+		if (&obj == this)
+		{
+			return;
+		}
 		if (Top != NULL)
 		{
 			while (Top)
@@ -39,14 +44,11 @@ public:
 				pop();
 			}
 		}
-		if (&obj == *this)
-		{
-			return;
-		}
 
 		else
 		{
 			Node * helper1;
+	//		Node * helper2;
 			helper1 = obj.Top;
 			while (helper1)
 			{
@@ -138,7 +140,8 @@ Z Stack<Z>::pop()
 {
 	if (!Top)
 	{
-		throw "Error: there are no values on the stack";
+		string mistake = "Error: there are no values on the stack";
+		throw mistake;
 	}
 	else
 	{
