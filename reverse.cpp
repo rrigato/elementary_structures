@@ -3,12 +3,16 @@
 #include <cstring>
 using namespace std;
 void Reverse (string);
-
+ 
 int main ()
 {
+    string obj;
+    cout << "Write a string and I will reverse it for you" <<endl;
+    getline(cin, obj); //Gets the whole string until the user hits enter
+    Reverse(obj);
     return 0;
 }
-
+ 
 void Reverse (string obj)
 {
      int length = obj.length();
@@ -18,10 +22,10 @@ void Reverse (string obj)
      }
      else
      {
-         cout << obj[length]<<endl;
+         cout << obj[length-1]<<endl;
          int counter = 0;
          string temp;
-         while (counter!=(length-1))
+         while (counter!=(length-2))
          {
                temp[counter] = obj[counter];
          }
