@@ -2,7 +2,7 @@
 #include <string>
 #include <cstring>
 using namespace std;
-void Reverse (string);
+void Reverse (string &);
  
 int main ()
 {
@@ -13,23 +13,36 @@ int main ()
     return 0;
 }
  
-void Reverse (string obj)
+void Reverse (string & obj)
 {
-     int length = obj.length();
-     if (length == 0)
+
+     if (obj.length() == 0)
      {
                 return;
      }
      else
      {
-         cout << obj[length-1]<<endl;
-         int counter = 0;
-         string temp;
-         while (counter!=(length-2))
+
+        cout << obj[obj.length()-1];
+        string temp;
+    for (int i=0; i < obj.length()-2; i++)
          {
                temp[counter] = obj[counter];
+               counter++;
          }
          Reverse(temp);
+
+
+         
+        /* cout << obj[length-1]<<endl;
+         int counter = 0;
+         string temp;
+         while (counter <(length-2))
+         {
+               temp[counter] = obj[counter];
+               counter++;
+         }
+         Reverse(temp);*/
      }   
 }
 /*
