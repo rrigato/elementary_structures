@@ -1,27 +1,37 @@
-
 #include "MyStack.h"
 #include <iostream>
 #include <string>
 using namespace std;
 int main()
 {
+
+    string s;
+    cout << "Give me a string and I will reverse it " << endl;
+    getline(cin, s);
+//  int length = s.size();
+    Stack <char> start;
+    int counter = 0;
+    while (counter < s.size())
+    {
+        start.push(s[counter]);
+        counter ++;
+    }
+
+
     try
     {
-        Stack<int> start;
-        start.push(2);
-        start.push(3);
-        // Stack<int> part2(start);
-        Stack<int> part3;
-        part3 = start;
-
-        std::cout << start.pop() << std::endl;
-        //std::cout << part2.pop() <<std::endl;
-        //  std::cout << part3.pop() <<std::endl;
-        std::cin.get();
+        counter = 0;
+        while (counter < s.size())
+        {
+            cout << start.pop() ;
+            counter++;
+        }
     }
     catch (string mistake)
     {
         cout << mistake << endl;
     }
+    cin.get();
     return 0;
+}
 }
