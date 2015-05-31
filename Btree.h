@@ -74,3 +74,58 @@ class Btree
             return;
         }
     }
+    void preprint(Node * r)
+    {
+        if (r == NULL)
+            return;
+        preprint(r->Left);
+        std::cout << r->value;
+        preprint(r->Right);
+    }
+    bool Search(Node * r, Z data)
+    {
+        if (r==NULL)
+            return false;
+        if (r->value == data)
+        {
+            return true;
+        }
+        else if (r->value < data)
+        {
+            Search(r->Right, data);
+        }
+        else if (r->value > data)
+        {
+            Search(r->Left,data);
+        }
+    }
+    public:
+        Btree()
+        {
+            Root = NULL;
+        }
+        ~Btree()
+        {
+            Destroy();
+        }
+        void Search(Z data)
+        {
+            Search(Root,data);
+        }
+    void Remove(Z data)
+    {
+        seek(Root, data);
+    }
+    void Destroy()
+    {
+        Destroy(Root);
+    }
+   void Insert(Z data)
+    {
+        Insert(Root, data);
+    }
+    void preprint()
+    {
+        preprint(Root);
+    }
+};
