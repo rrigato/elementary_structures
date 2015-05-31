@@ -129,3 +129,27 @@ class Btree
         preprint(Root);
     }
 };
+ 
+template <class Z>
+void Btree<Z>::Insert(Node * r, Z data)
+{
+ 
+    if (r ==NULL)
+        {
+            Node * newNode;
+            newNode = new Node;
+            newNode->value =data;
+            r = newNode;
+            newNode->Left = NULL;
+            newNode->Right = NULL;
+        }
+    else if(r->value > data)
+    {
+        Insert(r->Left, data);
+    }
+    else
+    {
+        Insert(r->Right,data);
+    }
+}
+#endif // BTREE_H
