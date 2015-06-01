@@ -1,3 +1,4 @@
+
 #ifndef BTREE_H
 #define BTREE_H
 template <class Z>
@@ -11,7 +12,28 @@ class Btree
                 Node * Right;
         };
         Node * Root;
-    void Insert (Node*, Z);
+    void Insert (Node * r, Z data)
+    {
+
+        if (r ==NULL)
+            {
+                Node * newNode;
+                newNode = new Node;
+                newNode->value =data;
+                newNode->Left = NULL;
+                newNode->Right = NULL;
+                r = newNode;
+
+            }
+        else if(r->value > data)
+        {
+            Insert(r->Left, data);
+        }
+        else
+        {
+            Insert(r->Right,data);
+        }
+    }
     void Destroy (Node* r)
     {
         if (r==NULL)
@@ -35,7 +57,7 @@ class Btree
         {
             seek(r->Right, data);
         }
- 
+
     }
     void Remove (Node *r)
     {
@@ -129,19 +151,20 @@ class Btree
         preprint(Root);
     }
 };
- 
-template <class Z>
+
+/*template <class Z>
 void Btree<Z>::Insert(Node * r, Z data)
 {
- 
+
     if (r ==NULL)
         {
             Node * newNode;
             newNode = new Node;
             newNode->value =data;
-            r = newNode;
             newNode->Left = NULL;
             newNode->Right = NULL;
+            r = newNode;
+
         }
     else if(r->value > data)
     {
@@ -151,5 +174,6 @@ void Btree<Z>::Insert(Node * r, Z data)
     {
         Insert(r->Right,data);
     }
-}
+}*/
 #endif // BTREE_H
+
