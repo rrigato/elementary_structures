@@ -1,4 +1,4 @@
-
+#include <iostream>
 #ifndef BTREE_H
 #define BTREE_H
 template <class Z>
@@ -12,18 +12,18 @@ class Btree
                 Node * Right;
         };
         Node * Root;
-    void Insert (Node*, Z);
-    void Destroy (Node * );
+    void Insert (Node*&, Z);
+    void Destroy (Node * & );
 
-    void seek(Node *, Z );
+    void seek(Node * &, Z );
 
-    void Remove (Node * );
+    void Remove (Node * & );
 
 
 
-    void preprint(Node * );
+    void preprint(Node * &)const;
 
-    bool Search(Node * , Z );
+    bool Search(Node * & , Z );
 
     public:
         Btree()
@@ -58,7 +58,7 @@ class Btree
 
 
 template <class Z>
-void Btree<Z>::preprint(Node * r)
+void Btree<Z>::preprint(Node * & r) const
     {
         if (r == NULL)
             return;
@@ -69,7 +69,7 @@ void Btree<Z>::preprint(Node * r)
 
 
 template <class Z>
-bool Btree<Z>::Search(Node * r, Z data)
+bool Btree<Z>::Search(Node * & r, Z data)
     {
         if (r==NULL)
             return false;
@@ -88,7 +88,7 @@ bool Btree<Z>::Search(Node * r, Z data)
     }
 
 template <class Z>
-void Btree<Z>::Remove(Node * r)
+void Btree<Z>::Remove(Node * & r)
    {
         if (r->Left ==NULL && r->Right ==NULL)
         {
@@ -128,7 +128,7 @@ void Btree<Z>::Remove(Node * r)
 
 
 template <class Z>
-void Btree<Z>::seek(Node * r, Z data)
+void Btree<Z>::seek(Node * & r, Z data)
    {
         if (r==NULL)
             return;
@@ -148,7 +148,7 @@ void Btree<Z>::seek(Node * r, Z data)
 
 
 template <class Z>
-void Btree<Z>::Destroy(Node * r)
+void Btree<Z>::Destroy(Node * & r)
     {
         if (r==NULL)
             return;
@@ -158,7 +158,7 @@ void Btree<Z>::Destroy(Node * r)
         r=NULL;
     }
 template <class Z>
-void Btree<Z>::Insert(Node * r, Z data)
+void Btree<Z>::Insert(Node * & r, Z data)
 {
 
     if (r ==NULL)
