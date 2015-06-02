@@ -18,6 +18,11 @@ class List
 		{
 			clear();
 		}
+		List(const List & l)
+		{
+			Head = 0;
+			*this = l;
+		}
 		void append(int);
 		void print() const;
 		bool isEmpty() const;
@@ -25,6 +30,7 @@ class List
 		void remove(int);
 		void insert(int);
 		List & operator = (const List &);
+
 
 
 
@@ -114,3 +120,45 @@ void List::remove(int value)
 	}
 	
 }
+
+void List::insert(int value)
+{
+	Node * newNode = new Node;
+	newNode->i = value;
+	newNode->Next = 0;
+	if (isEmpty())
+	{
+		Head = newNode;
+
+	}
+	else if (value < Head->i)
+	{
+		newNode->Next = Head;
+		Head = newNode;
+	}
+	else
+	{
+		Node * one = Head;
+		Node * two = Head->Next;
+		for (; two != 0 && two->i < value; one = one->Next, two = two->Next);
+		newNode->Next = two;
+		one->Next = newNode;
+	}
+}
+
+List & List::operator=(const List &l)
+{
+	if (this == &l)
+		return *this;
+	if (isEmpty())
+	{
+		clear();
+	}
+	Node * one = l.Head;
+	while (one)
+	{
+		insert(one->i);
+		one = one->Next;
+	}
+}
+#endif
