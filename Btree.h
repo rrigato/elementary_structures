@@ -12,55 +12,84 @@ class Btree
                 Node * Right;
         };
         Node * Root;
-    void Insert (Node * r, Z data)
+    void Insert (Node*, Z);
+    void Destroy (Node * );
+
+    void seek(Node *, Z );
+
+    void Remove (Node * );
+
+
+
+    void preprint(Node * );
+
+    bool Search(Node * , Z );
+
+    public:
+        Btree()
+        {
+            Root = NULL;
+        }
+        ~Btree()
+        {
+            Destroy();
+        }
+        void Search(Z data)
+        {
+            Search(Root,data);
+        }
+    void Remove(Z data)
     {
-
-        if (r ==NULL)
-            {
-                Node * newNode;
-                newNode = new Node;
-                newNode->value =data;
-                newNode->Left = NULL;
-                newNode->Right = NULL;
-                r = newNode;
-
-            }
-        else if(r->value > data)
-        {
-            Insert(r->Left, data);
-        }
-        else
-        {
-            Insert(r->Right,data);
-        }
+        seek(Root, data);
     }
-    void Destroy (Node* r)
+    void Destroy()
+    {
+        Destroy(Root);
+    }
+   void Insert(Z data)
+    {
+        Insert(Root, data);
+    }
+    void preprint()
+    {
+        preprint(Root);
+    }
+};
+
+
+template <class Z>
+void Btree<Z>::preprint(Node * r)
+    {
+        if (r == NULL)
+            return;
+        preprint(r->Left);
+        std::cout << r->value;
+        preprint(r->Right);
+    }
+
+
+template <class Z>
+bool Btree<Z>::Search(Node * r, Z data)
     {
         if (r==NULL)
-            return;
-        Destroy(r->Left);
-        Destroy(r->Right);
-        delete r;
-        r=NULL;
-    }
-    void seek(Node *r, Z data)
-    {
-        if (r==NULL)
-            return;
-        if(r->value == data)
-            Remove(r);
+            return false;
+        if (r->value == data)
+        {
+            return true;
+        }
+        else if (r->value < data)
+        {
+            Search(r->Right, data);
+        }
         else if (r->value > data)
         {
-            seek(r->Left, data);
+            Search(r->Left,data);
         }
-        else if(r->value < data)
-        {
-            seek(r->Right, data);
-        }
-
     }
-    void Remove (Node *r)
-    {
+
+template <class Z>
+void Btree<Z>::Remove(Node * r)
+   {
         if (r->Left ==NULL && r->Right ==NULL)
         {
             delete r;
@@ -96,63 +125,39 @@ class Btree
             return;
         }
     }
-    void preprint(Node * r)
-    {
-        if (r == NULL)
-            return;
-        preprint(r->Left);
-        std::cout << r->value;
-        preprint(r->Right);
-    }
-    bool Search(Node * r, Z data)
-    {
+
+
+template <class Z>
+void Btree<Z>::seek(Node * r, Z data)
+   {
         if (r==NULL)
-            return false;
-        if (r->value == data)
-        {
-            return true;
-        }
-        else if (r->value < data)
-        {
-            Search(r->Right, data);
-        }
+            return;
+        if(r->value == data)
+            Remove(r);
         else if (r->value > data)
         {
-            Search(r->Left,data);
+            seek(r->Left, data);
         }
-    }
-    public:
-        Btree()
+        else if(r->value < data)
         {
-            Root = NULL;
+            seek(r->Right, data);
         }
-        ~Btree()
-        {
-            Destroy();
-        }
-        void Search(Z data)
-        {
-            Search(Root,data);
-        }
-    void Remove(Z data)
-    {
-        seek(Root, data);
-    }
-    void Destroy()
-    {
-        Destroy(Root);
-    }
-   void Insert(Z data)
-    {
-        Insert(Root, data);
-    }
-    void preprint()
-    {
-        preprint(Root);
-    }
-};
 
-/*template <class Z>
+    }
+
+
+
+template <class Z>
+void Btree<Z>::Destroy(Node * r)
+    {
+        if (r==NULL)
+            return;
+        Destroy(r->Left);
+        Destroy(r->Right);
+        delete r;
+        r=NULL;
+    }
+template <class Z>
 void Btree<Z>::Insert(Node * r, Z data)
 {
 
@@ -161,10 +166,9 @@ void Btree<Z>::Insert(Node * r, Z data)
             Node * newNode;
             newNode = new Node;
             newNode->value =data;
+            r = newNode;
             newNode->Left = NULL;
             newNode->Right = NULL;
-            r = newNode;
-
         }
     else if(r->value > data)
     {
@@ -174,6 +178,6 @@ void Btree<Z>::Insert(Node * r, Z data)
     {
         Insert(r->Right,data);
     }
-}*/
+}
 #endif // BTREE_H
 
