@@ -1,17 +1,36 @@
 #include <iostream>
 #include "Btree.h"
 using namespace std;
+void menu();
 int main()
 {
-    Btree <int> test;
-    test.Insert(3);
-    test.Insert(5);
-    test.Insert(7);
-    test.Insert(6);
-    test.Insert(2);
-    test.preprint();
-    test.Remove(5);
-    test.preprint();
+
+    menu();
     cin.get();
     return 0;
 }
+
+void menu()
+{
+    Btree <int> test;
+    char choice;
+    do
+    {
+        cout << endl;
+        cout << "(I)nsert" <<endl;
+        cout << "(R)emove" <<endl;
+        cout << "(P)rint "<<endl;
+        cout << "(Q)uit" <<endl;
+        cout << "(S)earch" <<endl;
+
+        cin >> choice;
+        switch (choice)
+        {
+           case  'I':
+           case  'i':   {
+                            int value;
+                            cout << "Give me a value and I will insert it " <<endl;
+                            cin >> value;
+                            test.Insert(value);
+                            break;
+                        }
