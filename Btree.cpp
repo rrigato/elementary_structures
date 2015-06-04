@@ -50,3 +50,29 @@ void menu()
                             test.Remove(value);
                             break;
                         }
+            case 'q':
+            case 'Q':
+                        {
+                            cout << "Bye Bye" <<endl;
+                            return;
+                        }
+
+            case 's':
+            case 'S':
+                        {
+                                                    int value;
+                            cout << "Give me a value and I will search for it " <<endl;
+                            cin >> value;
+                            if(test.Search(value))
+                                    cout << "It was found in the binary tree!" <<endl;
+                            else
+                                    cout << "It was not found in the binary tree." <<endl;
+                            break;
+                        }
+
+            default: cout << "Bad user, enter a proper choice." <<endl;
+
+
+        }
+    } while(1);
+}
