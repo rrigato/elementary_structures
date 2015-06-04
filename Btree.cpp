@@ -34,3 +34,19 @@ void menu()
                             test.Insert(value);
                             break;
                         }
+
+            case 'P':
+            case 'p':   {
+                            test.preprint();
+                            break;
+
+                        }
+
+            case 'R':
+            case 'r':   {
+                            int value;
+                            cout << "Give me a value and I will remove it " <<endl;
+                            cin >> value;
+                            test.Remove(value);
+                            break;
+                        }
