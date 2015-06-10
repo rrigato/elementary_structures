@@ -3,7 +3,7 @@ using namespace std;
 //increasing list
 class linked_list
 {
-
+	private:
 		struct Node
 		{
 			int data;
@@ -13,9 +13,52 @@ class linked_list
 
 		Node * Head;
 
-
+	public:
+		linked_list()
+		{
+			Head = 0;
+		}
+		~linked_list()
+		{
+			//destroy();
+		}
 		void insert( int );
+
 };
+
+class binary_tree
+{
+	private:
+		struct Node
+		{
+			int value;
+			Node * Left;
+			Node * Right;
+		};
+		Node * Root;
+	public:
+		void insert( Node * &, int);
+
+};
+void binary_tree::insert(Node *& r, int data)
+{
+	Node * newNode = new Node;
+	if (!r)
+	{
+		r = newNode;
+		newNode->Left= 0;
+		newNode->Right =0;
+		return;
+	}
+	else if( r->value > data)
+		insert(r->Left, data);
+	else
+		insert(r->Right, data);
+
+
+}
+
+
 
 void linked_list::insert( int value)
 {
