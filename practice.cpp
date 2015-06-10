@@ -23,6 +23,7 @@ class linked_list
 			//destroy();
 		}
 		void insert( int );
+		
 
 };
 
@@ -38,14 +39,79 @@ class binary_tree
 		Node * Root;
 	public:
 		void insert( Node * &, int);
+		void preorder (Node *&) const;
+		bool Search (Node * &, int) const;
+		void Seek(Node *&, int);
+		void Destroy(Node *&);
 
 };
+
+void binary_tree::Seek (Node * & r, int data)
+{
+	if (r==0)
+		throw "The value was not found";
+	else if (r->value ==data)
+	{Destroy(r);}
+	else if (r->value > data)
+		Search(r->Left, data);
+	else 
+		Search(r->Right,data);
+}
+void binary_tree::Destroy(Node *&r)
+{
+	if (r->Right == NULL && r->Left ==NULL)
+	{delete r; r=NULL; return; }
+	else if (r->Right != NULL && r->Left ==NULL)
+	{
+		Node * one = r;
+		r = r->Right;
+		delete r;
+		return;
+	}
+	else if (r->Right == NULL && r->Left !=NULL)
+	{
+		Node * one = r;
+		r = r->Right;
+		delete r;
+		return;
+	}
+}
+
+
+
+bool binary_tree::Search (Node *&r, int data)const
+{
+	if (r==0)
+		return false;
+	else if (r->value ==data)
+		return true;
+	else if (r->value > data)
+		return Search(r->Left, data);
+	else 
+		return Search(r->Right,data);
+
+}
+
+void binary_tree::preorder(Node *& r)const
+{
+	if (!r)
+		return;
+	else
+	{
+		cout << r->value << " " <<endl;
+		preorder(r->Left);
+
+		preorder(r->Right);
+	}
+}
 void binary_tree::insert(Node *& r, int data)
 {
-	Node * newNode = new Node;
+
 	if (!r)
 	{
+		Node * newNode = new Node;
 		r = newNode;
+		r->value = data;
 		newNode->Left= 0;
 		newNode->Right =0;
 		return;
