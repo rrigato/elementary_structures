@@ -65,15 +65,27 @@ void binary_tree::Destroy(Node *&r)
 	{
 		Node * one = r;
 		r = r->Right;
-		delete r;
+		delete one;
 		return;
 	}
 	else if (r->Right == NULL && r->Left !=NULL)
 	{
 		Node * one = r;
-		r = r->Right;
-		delete r;
+		r = r->Left;
+		delete one;
 		return;
+	}
+	else
+	{
+		Node * one = r->Right;
+		while(one->Left)
+		{
+			one = one->Left;
+		}
+		one->Left = r->Left;
+		one = r;
+		r = r->Right;
+		delete one;
 	}
 }
 
