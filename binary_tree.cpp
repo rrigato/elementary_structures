@@ -62,8 +62,9 @@ void destroy(TreeNode *& r)
 
 	}
 }
-
+ void helper (int);
 int main()
 {
 	return 0;
 }
+
