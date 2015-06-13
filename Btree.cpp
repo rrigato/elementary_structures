@@ -4,9 +4,9 @@ using namespace std;
 void menu();
 int main()
 {
-
+	cout << "this is a test run" ;
 	menu();
-	cin.get();
+
 	return 0;
 }
 
