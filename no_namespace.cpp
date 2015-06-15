@@ -63,6 +63,7 @@ int main()
 	std::cout << "The area of the circle is " << circl_obj.getArea() << std::endl;
 	std::cin.get();
 	std::cin.get();
+	std::cout << "This uses no namespace but passes objects with the scope resolution operator"
 	Circle circ;
 	Circle ci();
 	return 0;
