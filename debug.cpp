@@ -7,7 +7,7 @@ int main ()
   truth_table name;
   truth_table name2;
   name2[1] [1] = FALSE;
-  usage ()
+  usage (name2[] [1], 1);
   std::ofstream debugFile;
   debugFile << "This is the debug information " <<endl;
   
