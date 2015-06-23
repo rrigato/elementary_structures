@@ -19,5 +19,6 @@ int main ()
 
 void usage ( char name [] [20], int first_size)
 {
-  cout << name[1] [1] <<;
+  cout << name2[1] [1] ;
+  cout << name [5] [1] ;
 }
